@@ -1221,7 +1221,7 @@ let tt;function toast(m){let el=$('.toast');if(!el){el=document.createElement('d
 
 
 /* ---------- 3D ---------- */
-const V3={on:false,inited:false,ren:null,scene:null,cam:null,root:null,lights:null,th:-2.35,ph:0.85,dist:1050,tx:291,tz:335,low:false,t:null,raf:0,fail:false};
+const V3={on:false,inited:false,ren:null,scene:null,cam:null,root:null,lights:null,th:2.2,ph:0.9,dist:1550,tx:291,tz:335,low:false,t:null,raf:0,fail:false};
 const C3={wall:0xEFECE5,wallb:0xE4E0D7,shaft:0x9C9A92,floorW:0xC9A47A,floorW2:0xBF996F,floorT:0xD6D7D2,white:0xF5F4F0,wood:0xB98B5D,fabric:0x6E7D4D,appl:0xD5D8DA,dark:0x2C2C2A,glass:0x8EC1E8,plant:0x4E6B33,rug:0xD4CAB8,lamp:0xF2B04A};
 const H3={pantry:[0,250,'wood'],cab:[0,90,'white'],tall:[0,230,'wood'],fridge:[0,200,'appl'],sink:[0,90,'white'],dw:[0,90,'appl'],hob:[0,90,'white'],hob2:[0,90,'white'],upper:[150,240,'wood'],hood:[150,240,'white'],steptable:[0,75,'wood'],table:[0,75,'wood'],round:[0,50,'wood'],chair:[0,85,'wood'],stool:[0,75,'wood'],sofa:[0,80,'fabric'],armchair:[0,80,'fabric'],tv:[85,150,'dark'],plant:[0,110,'plant'],rug:[0,1.5,'rug'],bed:[0,50,'fabric'],night:[0,55,'wood'],dresser:[0,85,'wood'],desk:[0,75,'wood'],shelf:[0,200,'wood'],tripod:[0,160,'dark'],rail:[0,200,'white'],shoe:[0,45,'wood'],mirror:[20,190,'glass'],shower:[0,200,'glass'],toilet:[0,40,'white'],washer:[0,85,'appl'],basin:[0,85,'white'],towel:[50,110,'appl'],rad:[10,65,'white']};
 const WIN3=[[50,235],[350,530]];
@@ -1325,8 +1325,8 @@ function setView(v){
 }
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));
 $('#v3-walls').onclick=()=>{V3.low=!V3.low;$('#v3-walls').setAttribute('aria-pressed',String(V3.low));build3D()};
-$('#v3-top').onclick=()=>{V3.ph=0.12;V3.th=-Math.PI/2;V3.dist=1000;V3.tx=291;V3.tz=335;draw3D()};
-$('#v3-persp').onclick=()=>{V3.ph=0.85;V3.th=-2.35;V3.dist=1050;V3.tx=291;V3.tz=335;draw3D()};
+$('#v3-top').onclick=()=>{V3.ph=0.06;V3.th=Math.PI/2;V3.dist=1350;V3.tx=291;V3.tz=335;draw3D()};
+$('#v3-persp').onclick=()=>{V3.ph=0.9;V3.th=2.2;V3.dist=1550;V3.tx=291;V3.tz=335;draw3D()};
 (async()=>{try{if(!window.claude||typeof window.claude.use!=='function')return;const dl=await window.claude.use('downloads');if(!dl)return;const b=$('#v3-png');b.hidden=false;b.onclick=async()=>{if(!V3.inited)return;draw3D();await new Promise(r=>setTimeout(r,60));V3.ren.render(V3.scene,V3.cam);V3.ren.domElement.toBlob(async blob=>{try{await dl.save({filename:'plan-3d.png',data:blob})}catch(e){if(e&&e.code!=='declined')toast('Не получилось сохранить картинку')}},'image/png')}}catch(e){}})();
 
 /* ---------- Старт ---------- */
